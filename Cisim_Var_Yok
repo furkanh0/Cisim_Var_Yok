@@ -1,0 +1,30 @@
+int trigPin=3, echoPin=2;
+long sure=0; 
+long uzaklik=0;
+
+void setup() {
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+ digitalWrite(trigPin,LOW);
+ delayMicroseconds(2);
+ digitalWrite(trigPin,HIGH);
+ delayMicroseconds(10);
+ digitalWrite(trigPin,LOW);
+ sure=pulseIn(echoPin,HIGH);
+ uzaklik=(sure/2)*0.0343;
+
+if (uzaklik<100)
+{
+  Serial.println("Cisim Var");
+  delay(500);
+}
+else
+{
+  Serial.println("Cisim Yok");
+  delay(500);
+}
+}
